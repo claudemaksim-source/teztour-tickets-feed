@@ -4,9 +4,20 @@ on:
   schedule:
     - cron: "17 3 * * *"      # каждый день в 03:17 UTC
   workflow_dispatch:           # и по кнопке вручную
+  push:
+    # только изменения кода. Файл цен сюда не включён намеренно:
+    # иначе коммит бота запускал бы сборку снова и снова
+    paths:
+      - build-feed.py
+      - .github/workflows/feed.yml
 
 permissions:
   contents: write
+
+# два прогона разом полезли бы друг другу в push
+concurrency:
+  group: feed
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -16,6 +27,8 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Собрать фид
+        env:
+          FEED_WORKERS: "6"   # с чужого адреса шлюз лучше не частить
         run: python3 build-feed.py
 
       - name: Закоммитить, если цены изменились
