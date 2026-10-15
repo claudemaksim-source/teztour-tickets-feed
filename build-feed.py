@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Фид «цена от» по странам и регионам для вывода на сайте.
 
-Источник — открытый чартерный поиск шлюза: xml.tezapi.eu/ticketsearch/search.
-Пароль не нужен, белый список не нужен.
+Цены — из открытого чартерного поиска шлюза xml.tezapi.eu/ticketsearch/search
+(пароль и белый список не нужны). Направления и месяцы — из программы
+перевозки ARM, см. program.py.
 
 Две цены считаются ОТДЕЛЬНЫМИ запросами, и это принципиально: круговой
 тариф дешевле суммы двух односторонних (проверено: 140+140 за круг против
@@ -11,20 +12,17 @@
 Цена в ответе шлюза — на всю группу, поэтому запрашивается один взрослый.
 Поле свободных мест всегда 10 и смысла не несёт, в фид не попадает.
 
-## Почему обход бережливый
+## Что опрашивается
 
-Полный год — 8760 запросов в сутки. Это несоразмерно двенадцати числам на
-выходе: дальние цены почти не двигаются, скачет ближняя неделя-две. К тому
-же единственное ограничение, которое TEZ где-либо документирует, — 50
-запросов в минуту (у поиска туров), а без потолка выходило 850-1250.
-
-Поэтому: найденные цены хранятся в prices-cache.json между запусками, а
-каждый прогон опрашивает только
-  * ближние NEAR_DAYS дней, где цены реально меняются;
-  * даты, на которых сейчас стоит минимум, — чтобы опубликованная цена
-    всегда была свежепроверенной, а не унаследованной из запаса;
-  * одну седьмую дальнего хвоста, так что полный круг выходит за неделю.
-Плюс жёсткий потолок FEED_RPS запросов в секунду.
+Только даты внутри месяцев программы — вне них рейсов нет по определению,
+и ходить туда незачем. Из них:
+  * все даты, на которых рейсы уже известны по запасу, — каждый прогон,
+    чтобы опубликованная цена всегда была свежепроверенной;
+  * одна TAIL_SLICES-я часть остальных — поиск новых рейсов, полный круг
+    за TAIL_SLICES прогонов.
+Плюс жёсткий потолок FEED_RPS запросов в секунду: без него восемь потоков
+давали 1250 в минуту, в 25 раз выше единственного ограничения, которое TEZ
+где-либо документирует.
 """
 import concurrent.futures as cf
 import datetime as dt
@@ -38,47 +36,27 @@ import time
 import unicodedata
 import urllib.parse
 
+import program
+
 GATE = "https://xml.tezapi.eu/ticketsearch/search"
 EUR = 18864
 VNO = "VNO"
-# Год, а не полгода: Бургас, Варна, Корфу и Родос начинаются в мае-июне,
-# и при горизонте 180 дней выпадали из фида целиком вместе с Болгарией.
-HORIZON = int(os.environ.get("FEED_HORIZON", 365))      # дней вперёд
-NIGHTS = 7             # для цены туда-обратно
+HORIZON = int(os.environ.get("FEED_HORIZON", 365))
+NIGHTS = 7
 WORKERS = int(os.environ.get("FEED_WORKERS", 4))
-RPS = float(os.environ.get("FEED_RPS", 2))              # запросов в секунду
-NEAR_DAYS = int(os.environ.get("FEED_NEAR_DAYS", 60))   # ближнее окно
-TAIL_SLICES = int(os.environ.get("FEED_TAIL_SLICES", 7))  # хвост за столько прогонов
+RPS = float(os.environ.get("FEED_RPS", 2))
+TAIL_SLICES = int(os.environ.get("FEED_TAIL_SLICES", 7))
 
 CACHE = "prices-cache.json"
 OUT = "tickets-from.json"
-
-# Ссылка на страницу билета. Подробности формата — в README.
 LINK = "https://www.teztour.lt/flightsearch"
 LINK_ORIGIN = 21129    # Вильнюс
 
-# Двенадцать направлений; найдены перебором 302 кодов IATA в трёх сезонных
-# окнах — короткий список пропускал Зальцбург и Мадейру.
-# airport — id аэропорта для ссылки (НЕ id города: город Тенерифе выдачи не даёт).
-DESTS = {
-    "AYT": {"airport": 23134, "region_lt": "Antalija",         "country_lt": "Turkija"},
-    "HER": {"airport": 28889, "region_lt": "Heraklionas",      "country_lt": "Graikija"},
-    "RHO": {"airport": 36369, "region_lt": "Rodas",            "country_lt": "Graikija"},
-    "CFU": {"airport": 26019, "region_lt": "Korfu",            "country_lt": "Graikija"},
-    "HRG": {"airport": 29169, "region_lt": "Hurgada",          "country_lt": "Egiptas"},
-    "SSH": {"airport": 37534, "region_lt": "Šarm el Šeichas",  "country_lt": "Egiptas"},
-    "TFS": {"airport": 38889, "region_lt": "Tenerifė",         "country_lt": "Ispanija"},
-    "AGP": {"airport": 32399, "region_lt": "Malaga",           "country_lt": "Ispanija"},
-    "BOJ": {"airport": 24729, "region_lt": "Burgasas",         "country_lt": "Bulgarija"},
-    "VAR": {"airport": 39919, "region_lt": "Varna",            "country_lt": "Bulgarija"},
-    "SZG": {"airport": 36849, "region_lt": "Zalcburgas",       "country_lt": "Austrija"},
-    "FNC": {"airport": 26134, "region_lt": "Madeira",          "country_lt": "Portugalija"},
-}
+DMY = "%d.%m.%Y"
+DESTS = {}             # заполняется программой перевозки при запуске
 
 LT_MAP = str.maketrans({"ą": "a", "č": "c", "ę": "e", "ė": "e", "į": "i",
                         "š": "s", "ų": "u", "ū": "u", "ž": "z"})
-
-DMY = "%d.%m.%Y"
 
 
 def slug(s):
@@ -89,25 +67,19 @@ def slug(s):
     return re.sub(r"-+", "-", re.sub(r"[^a-z0-9]+", "-", s)).strip("-")
 
 
-# ── обращение к шлюзу ─────────────────────────────────────────
+# ── обращение к шлюзу ──────────────────────────────
 
 class GateError(RuntimeError):
     """Шлюз не ответил осмысленно после всех попыток."""
 
 
-_gate_lock = threading.Lock()
+_lock = threading.Lock()
 _next_slot = [0.0]
 
 
 def _throttle():
-    """Потолок скорости на все потоки разом.
-
-    Без него восемь потоков давали 1250 запросов в минуту — в 25 раз выше
-    единственного ограничения, которое TEZ документирует. Отказа пока не
-    было, но это недосмотр на их стороне, а не разрешение.
-    """
     gap = 1.0 / RPS if RPS > 0 else 0
-    with _gate_lock:
+    with _lock:
         now = time.monotonic()
         wait = _next_slot[0] - now
         _next_slot[0] = max(now, _next_slot[0]) + gap
@@ -119,8 +91,7 @@ def _get(params, attempts=4):
     """Ответ шлюза или исключение.
 
     Без этого любой сбой возвращал пустую строку, рейсов в ответе
-    оказывалось ноль, и цена молча подскакивала до следующей по списку —
-    на расписании это опубликованная неверная цена без признаков сбоя.
+    оказывалось ноль, и цена молча подскакивала до следующей по списку.
     Признак годного ответа — корневой элемент <Tickets>: при ошибке шлюз
     отдаёт HTML со страницей 500, при запрете — <reference><error>.
     """
@@ -160,8 +131,7 @@ def search_ow(dest, date):
         p = _price(b, "priceSeatYTo")
         if p is None:
             continue
-        out.append({"price": p,
-                    "flight": _field(b, "flightNameTo"),
+        out.append({"price": p, "flight": _field(b, "flightNameTo"),
                     "dep": _field(b, "fdDepDateTo")[11:16],
                     "arr": _field(b, "fdArrDateTo")[11:16],
                     "airline": _field(b, "aircompanyNameTo")})
@@ -180,8 +150,7 @@ def search_rt(dest, date_out, date_back):
         a, c = _price(b, "priceSeatYTo"), _price(b, "priceSeatYFrom")
         if a is None or c is None:
             continue
-        out.append({"price": a + c,
-                    "flight_out": _field(b, "flightNameTo"),
+        out.append({"price": a + c, "flight_out": _field(b, "flightNameTo"),
                     "flight_back": _field(b, "flightNameFrom")})
     return out
 
@@ -203,7 +172,7 @@ def link(dest, date_out, date_back=None, adults=1):
     return f"{LINK}/{key}/{'/'.join(tail)}.lt.html"
 
 
-# ── запас данных между запусками ────────────────────────────────
+# ── запас данных между запусками ────────────────────────
 
 def load_cache():
     try:
@@ -222,83 +191,113 @@ def unkey(k):
     return dest, date
 
 
-def plan(today, cache):
-    """Что опрашиваем в этот прогон.
+FULL = os.environ.get("FEED_FULL") == "1"
 
-    Ближнее окно — целиком; хвост — одна седьмая, своя в каждый день;
-    и сверх того даты, на которых стоит нынешний минимум, иначе
-    опубликованная цена могла бы неделю жить непроверенной.
+
+def plan(today, cache, candidates):
+    """Какие (направление, дата) опрашиваем в этот прогон.
+
+    candidates — даты внутри месяцев программы, вне них рейсов нет.
+
+    Три случая, и все решаются сами, без переключателей:
+      * запас пуст (первый запуск) — берём все даты;
+      * у направления ни одного известного рейса (появилось в программе) —
+        берём все его даты, иначе оно дозревает TAIL_SLICES прогонов и цена
+        всё это время завышена: у Ламеции при частичном обходе нашлось
+        2 рейса из 11 и 215 EUR вместо настоящих 210;
+      * обычное направление — все известные даты плюс одна часть из
+        TAIL_SLICES неизвестных, своя в каждый день.
+
+    FEED_FULL=1 принуждает к полному обходу — на случай, когда нужно
+    пересобрать запас целиком вручную.
     """
-    days = [today + dt.timedelta(days=i) for i in range(1, HORIZON + 1)]
-    near = [d.strftime(DMY) for d in days[:NEAR_DAYS]]
-    tail = days[NEAR_DAYS:]
-    sl = today.toordinal() % TAIL_SLICES
-    tail_part = [d.strftime(DMY) for i, d in enumerate(tail)
-                 if i % TAIL_SLICES == sl]
-    base = set(near) | set(tail_part)
-
-    jobs = {"ow": set(), "rt": set()}
-    for dest in DESTS:
-        for d in base:
-            jobs["ow"].add((dest, d))
-            jobs["rt"].add((dest, d))
-        for mode in ("ow", "rt"):
-            rows = [(k, cache[mode][k]) for k in cache[mode]
-                    if unkey(k)[0] == dest and cache[mode][k]]
+    known = set()
+    for mode in ("ow", "rt"):
+        for k, rows in cache[mode].items():
             if rows:
-                best = min(rows, key=lambda kv: min(r["price"] for r in kv[1]))
-                jobs[mode].add((dest, unkey(best[0])[1]))
-    return sorted(jobs["ow"]), sorted(jobs["rt"])
+                known.add(unkey(k))
+
+    if FULL or not known:
+        # запас пуст — первый запуск; нарезать его частями нет смысла
+        jobs = {(d, x) for d, days in candidates.items() for x in days}
+        return sorted(jobs), 0, len(jobs)
+
+    jobs, fresh, disco = set(), 0, 0
+    with_flights = {d for d, _ in known}
+    sl = today.toordinal() % TAIL_SLICES
+    for dest, days in candidates.items():
+        rest = []
+        for d in days:
+            if (dest, d) in known:
+                jobs.add((dest, d))
+                fresh += 1
+            else:
+                rest.append(d)
+        if dest not in with_flights:
+            # направление появилось в программе только что: берём все его
+            # даты сразу, иначе оно дозревает TAIL_SLICES прогонов, а цена
+            # всё это время завышена — у Ламеции при частичном обходе
+            # нашлось 2 рейса из 11 и 215 EUR вместо настоящих 210
+            for d in rest:
+                jobs.add((dest, d))
+                disco += 1
+            continue
+        for i, d in enumerate(sorted(rest)):
+            if i % TAIL_SLICES == sl:
+                jobs.add((dest, d))
+                disco += 1
+    return sorted(jobs), fresh, disco
 
 
-def refresh(jobs_ow, jobs_rt, cache):
-    """Опросить запланированное и вложить в запас. Пустой ответ — удаление."""
+def refresh(jobs, cache):
+    """Опросить запланированное в оба вида цен. Пустой ответ — удаление."""
     failed = []
 
-    def do(mode, dest, date):
-        if mode == "ow":
-            return search_ow(dest, date)
+    def both(dest, date):
         back = (dt.datetime.strptime(date, DMY).date()
                 + dt.timedelta(days=NIGHTS)).strftime(DMY)
-        return search_rt(dest, date, back)
+        return search_ow(dest, date), search_rt(dest, date, back)
 
-    for mode, jobs in (("ow", jobs_ow), ("rt", jobs_rt)):
-        done = 0
-        with cf.ThreadPoolExecutor(max_workers=WORKERS) as ex:
-            futs = [(j, ex.submit(do, mode, *j)) for j in jobs]
-            for (dest, date), f in futs:
-                done += 1
-                try:
-                    rows = f.result()
-                except GateError as e:
-                    failed.append(str(e))
-                    continue
-                k = key(dest, date)
+    done = 0
+    with cf.ThreadPoolExecutor(max_workers=WORKERS) as ex:
+        futs = [(j, ex.submit(both, *j)) for j in jobs]
+        for (dest, date), f in futs:
+            done += 1
+            try:
+                ow_rows, rt_rows = f.result()
+            except GateError as e:
+                failed.append(str(e))
+                continue
+            k = key(dest, date)
+            for mode, rows in (("ow", ow_rows), ("rt", rt_rows)):
                 if rows:
                     cache[mode][k] = rows
                 else:
                     cache[mode].pop(k, None)
-                if done % 200 == 0:
-                    print(f"  {mode} … {done}/{len(jobs)}, сбоев {len(failed)}",
-                          flush=True)
+            if done % 200 == 0:
+                print(f"  … {done}/{len(jobs)} дат, сбоев {len(failed)}",
+                      flush=True)
     return failed
 
 
-def prune(cache, today):
-    """Выкинуть прошедшие даты и всё за горизонтом."""
+def prune(cache, today, candidates):
+    """Выкинуть прошедшее, вышедшее за горизонт и выпавшее из программы."""
     lo, hi = today + dt.timedelta(days=1), today + dt.timedelta(days=HORIZON)
+    allowed = {(d, x) for d, days in candidates.items() for x in days}
     removed = 0
     for mode in ("ow", "rt"):
         for k in list(cache[mode]):
-            d = dt.datetime.strptime(unkey(k)[1], DMY).date()
-            if d < lo or d > hi:
+            dest, date = unkey(k)
+            d = dt.datetime.strptime(date, DMY).date()
+            if d < lo or d > hi or (dest, date) not in allowed:
                 del cache[mode][k]
                 removed += 1
     return removed
 
 
 def rows_from_cache(cache):
-    """Запас → плоские списки, какие ждёт build()."""
+    """Запас → плоские списки. Порядок устойчивый: иначе при равных ценах
+    min() выбирал бы разные рейсы и ссылка в CMS дёргалась бы впустую."""
     ow, rt = [], []
     for k, rows in cache["ow"].items():
         dest, date = unkey(k)
@@ -310,18 +309,14 @@ def rows_from_cache(cache):
                 + dt.timedelta(days=NIGHTS)).strftime(DMY)
         for r in rows:
             rt.append(dict(r, dest=dest, date_out=date, date_back=back))
-    # порядок обязан быть устойчивым: при равных ценах min() иначе выбирал бы
-    # в разных сборках разные рейсы, и ссылка в CMS дёргалась бы впустую
-    ow.sort(key=lambda r: (r["dest"],
-                           dt.datetime.strptime(r["date"], DMY),
+    ow.sort(key=lambda r: (r["dest"], dt.datetime.strptime(r["date"], DMY),
                            r["flight"]))
-    rt.sort(key=lambda r: (r["dest"],
-                           dt.datetime.strptime(r["date_out"], DMY),
+    rt.sort(key=lambda r: (r["dest"], dt.datetime.strptime(r["date_out"], DMY),
                            r["flight_out"]))
     return ow, rt
 
 
-# ── сборка фида ────────────────────────────────────────────
+# ── сборка фида ──────────────────────────────────
 
 def cheapest(rows, k="price"):
     return min(rows, key=lambda r: r[k]) if rows else None
@@ -332,16 +327,15 @@ def money(x):
     return int(x) if float(x).is_integer() else round(float(x), 2)
 
 
-def build(ow, rt, today):
+def build(ow, rt, today, snapshot):
     regions, by_country = [], {}
-    for code, meta in DESTS.items():
+    for code in sorted(DESTS):
+        meta = DESTS[code]
         mine_ow = [r for r in ow if r["dest"] == code]
         mine_rt = [r for r in rt if r["dest"] == code]
         o, t = cheapest(mine_ow), cheapest(mine_rt)
         if not o and not t:
-            continue                      # направление вне сезона целиком
-        # сортировать датами, а не строками: "01.04.2027" < "31.10.2026"
-        # лексикографически, и сезон выводился наизнанку
+            continue        # в программе есть, а билетов нет — как Бодрум
         dates = sorted(dt.datetime.strptime(r["date"], DMY).date()
                        for r in mine_ow)
         rec = {
@@ -378,8 +372,7 @@ def build(ow, rt, today):
         ows = [r["one_way"] for r in regs if r["one_way"]]
         rts = [r["round_trip"] for r in regs if r["round_trip"]]
         countries.append({
-            "slug": slug(name),
-            "name": name,
+            "slug": slug(name), "name": name,
             "regions": [r["slug"] for r in regs],
             "regions_count": len(regs),
             "one_way": cheapest(ows) if ows else None,
@@ -394,6 +387,7 @@ def build(ow, rt, today):
     return {
         "generated_at": today.isoformat(),
         "source": GATE,
+        "program_snapshot": snapshot,
         "currency": "EUR",
         "origin": "VNO",
         "origin_name": "Vilnius",
@@ -405,12 +399,10 @@ def build(ow, rt, today):
     }
 
 
-# ── проверки перед публикацией ─────────────────────────────────
+# ── проверки перед публикацией ──────────────────────────
 
-MAX_FAILED = 20     # выше — публиковать нельзя, цены будут с дырами
-# знаем, что их 12; за год сезонность ни одного не скрывает.
-# При коротком горизонте для проверки занижается через FEED_MIN_REGIONS.
-MIN_REGIONS = int(os.environ.get("FEED_MIN_REGIONS", 11))
+MAX_FAILED = 20
+MIN_REGIONS = int(os.environ.get("FEED_MIN_REGIONS", 14))
 
 
 def check(feed, previous=None):
@@ -441,14 +433,22 @@ if __name__ == "__main__":
     import sys
     today = (dt.date.fromisoformat(os.environ["FEED_DATE"])
              if os.environ.get("FEED_DATE") else dt.date.today())
-    cache = load_cache()
-    have = len(cache["ow"]) + len(cache["rt"])
-    jobs_ow, jobs_rt = plan(today, cache)
-    print(f"дата {today}, горизонт {HORIZON} дн, направлений {len(DESTS)}, "
-          f"в запасе {have} дат, опрашиваем {len(jobs_ow) + len(jobs_rt)}, "
-          f"потолок {RPS}/с", flush=True)
 
-    failed = refresh(jobs_ow, jobs_rt, cache)
+    snapshot, dests, warn = program.load(today)
+    DESTS.update(dests)
+    for w in warn:
+        print(f"! {w}", file=sys.stderr)
+
+    candidates = program.dates_in_program(DESTS, today, HORIZON)
+    cache = load_cache()
+    jobs, fresh, disco = plan(today, cache, candidates)
+    print(f"дата {today}, снимок программы {snapshot}, "
+          f"направлений {len(DESTS)}, горизонт {HORIZON} дн", flush=True)
+    print(f"дат в программе {sum(len(v) for v in candidates.values())}, "
+          f"опрашиваем {len(jobs)} (известных {fresh}, поиск новых {disco}), "
+          f"запросов {len(jobs) * 2}, потолок {RPS}/с", flush=True)
+
+    failed = refresh(jobs, cache)
     if failed:
         print(f"НЕ ОТВЕТИЛИ {len(failed)}:", file=sys.stderr)
         for s in failed[:5]:
@@ -457,15 +457,14 @@ if __name__ == "__main__":
         sys.exit(f"шлюз не ответил на {len(failed)} запросов — "
                  f"выборка неполная, фид не обновляем")
 
-    dropped = prune(cache, today)
-    # запас пишем до проверки: это наблюдённые факты, они верны всегда.
-    # Иначе отказ публикации выбрасывал бы весь прогон, и следующий
-    # запуск опрашивал бы те же две с половиной тысячи дат заново.
+    dropped = prune(cache, today, candidates)
+    # запас пишем до проверки: это наблюдённые факты, они верны всегда,
+    # иначе отказ публикации выбрасывал бы весь прогон
     json.dump(cache, open(CACHE, "w"), ensure_ascii=False,
               indent=1, sort_keys=True)
 
     ow, rt = rows_from_cache(cache)
-    feed = build(ow, rt, today)
+    feed = build(ow, rt, today, snapshot)
 
     try:
         previous = json.load(open(OUT))
