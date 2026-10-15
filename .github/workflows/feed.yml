@@ -52,3 +52,27 @@ jobs:
           fi
           git commit -m "цены на $(date -u +%F)"
           git push
+
+      # Сверка идёт здесь, а не отдельным расписанием, именно потому,
+      # что так нет разрыва во времени: фид только что закоммичен,
+      # и не надо угадывать, успела ли сборка к назначенному часу.
+      #
+      # Ключ — из секрета, а не в теле файла: хранилище публичное.
+      # Без секрета шаг пропускается с пометкой, а не валит сборку:
+      # цены важнее сверки, и фид должен обновляться даже без неё.
+      - name: Сверить коллекцию tickets в Framer CMS
+        env:
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          if [ -z "$SUPABASE_ANON_KEY" ]; then
+            echo "секрет SUPABASE_ANON_KEY не задан — сверка пропущена"
+            exit 0
+          fi
+          url="https://sjzrnrrndgxvdartjkgw.supabase.co/functions/v1/framer-tickets?mode=sync"
+          out=$(curl -sS -m 280 "$url" \
+                  -H "apikey: $SUPABASE_ANON_KEY" \
+                  -H "Authorization: Bearer $SUPABASE_ANON_KEY")
+          echo "$out"
+          # ответ с ok:true считаем удачей, иначе роняем шаг, чтобы GitHub
+          # прислал письмо: молчаливая несверка хуже шумной
+          echo "$out" | python3 -c "import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get('ok') else 1)"
