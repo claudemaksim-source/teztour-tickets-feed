@@ -22,7 +22,10 @@ jobs:
         run: |
           git config user.name "feed-bot"
           git config user.email "feed-bot@users.noreply.github.com"
-          if git diff --quiet -- tickets-from.json; then
+          # через индекс, а не git diff: неотслеживаемый файл diff не видит,
+          # и самый первый запуск решил бы, что изменений нет
+          git add tickets-from.json
+          if git diff --cached --quiet; then
             echo "изменений нет"
             exit 0
           fi
@@ -32,9 +35,9 @@ jobs:
           after=$(python3 -c "import json; d=json.load(open('tickets-from.json')); d.pop('generated_at',None); print(json.dumps(d,sort_keys=True))")
           if [ "$before" = "$after" ]; then
             echo "изменилась только дата сборки — не коммитим"
+            git reset -- tickets-from.json
             git checkout -- tickets-from.json
             exit 0
           fi
-          git add tickets-from.json
           git commit -m "цены на $(date -u +%F)"
           git push
