@@ -29,7 +29,7 @@ VNO = "VNO"
 # и при горизонте 180 дней выпадали из фида целиком вместе с Болгарией.
 HORIZON = int(os.environ.get("FEED_HORIZON", 365))      # дней вперёд
 NIGHTS = 7             # для цены туда-обратно
-WORKERS = 8
+WORKERS = int(os.environ.get("FEED_WORKERS", 8))
 
 # Ссылка на страницу билета. Подробности формата — в README.
 LINK = "https://www.teztour.lt/flightsearch"
@@ -271,6 +271,7 @@ def build(ow, rt, today):
                                   c["slug"]))
     return {
         "generated_at": today.isoformat(),
+        "source": GATE,
         "currency": "EUR",
         "origin": "VNO",
         "origin_name": "Vilnius",
@@ -317,7 +318,7 @@ if __name__ == "__main__":
     today = (dt.date.fromisoformat(os.environ["FEED_DATE"])
              if os.environ.get("FEED_DATE") else dt.date.today())
     print(f"дата сборки {today}, горизонт {HORIZON} дней, "
-          f"направлений {len(DESTS)}", flush=True)
+          f"направлений {len(DESTS)}, потоков {WORKERS}", flush=True)
     try:
         previous = json.load(open(OUT))
     except (OSError, ValueError):
