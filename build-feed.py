@@ -3,7 +3,7 @@
 
 Цены — из открытого чартерного поиска шлюза xml.tezapi.eu/ticketsearch/search
 (пароль и белый список не нужны). Направления и месяцы — из программы
-перевозки ARM, см. program.py.
+перевозки ARM, см. program.py. Проверки перед публикацией — в checks.py.
 
 Две цены считаются ОТДЕЛЬНЫМИ запросами, и это принципиально: круговой
 тариф дешевле суммы двух односторонних (проверено: 140+140 за круг против
@@ -36,6 +36,7 @@ import time
 import unicodedata
 import urllib.parse
 
+import checks
 import program
 
 GATE = "https://xml.tezapi.eu/ticketsearch/search"
@@ -172,7 +173,7 @@ def link(dest, date_out, date_back=None, adults=1):
     return f"{LINK}/{key}/{'/'.join(tail)}.lt.html"
 
 
-# ── запас данных между запусками ────────────────────────
+# ── запас данных между запусками ───────────────────────
 
 def load_cache():
     try:
@@ -399,36 +400,6 @@ def build(ow, rt, today, snapshot):
     }
 
 
-# ── проверки перед публикацией ──────────────────────────
-
-MAX_FAILED = 20
-MIN_REGIONS = int(os.environ.get("FEED_MIN_REGIONS", 14))
-
-
-def check(feed, previous=None):
-    """Лучше уронить сборку, чем опубликовать фид с дырами."""
-    bad = []
-    if len(feed["regions"]) < MIN_REGIONS:
-        bad.append(f"регионов всего {len(feed['regions'])}, "
-                   f"ожидалось не меньше {MIN_REGIONS}")
-    for r in feed["regions"]:
-        if not r["one_way"] and not r["round_trip"]:
-            bad.append(f"{r['slug']}: нет ни одной цены")
-    if previous:
-        was = len(previous.get("regions", []))
-        if was and len(feed["regions"]) < was - 1:
-            bad.append(f"регионов стало {len(feed['regions'])}, было {was}")
-        old = {r["slug"]: r for r in previous.get("regions", [])}
-        for r in feed["regions"]:
-            p = old.get(r["slug"])
-            if not (p and p.get("one_way") and r.get("one_way")):
-                continue
-            a, b = p["one_way"]["price"], r["one_way"]["price"]
-            if a and b / a > 3:
-                bad.append(f"{r['slug']}: цена в одну {a} → {b}, рост втрое")
-    return bad
-
-
 if __name__ == "__main__":
     import sys
     today = (dt.date.fromisoformat(os.environ["FEED_DATE"])
@@ -453,7 +424,7 @@ if __name__ == "__main__":
         print(f"НЕ ОТВЕТИЛИ {len(failed)}:", file=sys.stderr)
         for s in failed[:5]:
             print(f"  {s}", file=sys.stderr)
-    if len(failed) > MAX_FAILED:
+    if len(failed) > checks.MAX_FAILED:
         sys.exit(f"шлюз не ответил на {len(failed)} запросов — "
                  f"выборка неполная, фид не обновляем")
 
@@ -470,7 +441,7 @@ if __name__ == "__main__":
         previous = json.load(open(OUT))
     except (OSError, ValueError):
         previous = None
-    problems = check(feed, previous)
+    problems = checks.check(feed, previous)
     if problems:
         print("ФИД НЕ ОБНОВЛЁН (запас сохранён):", file=sys.stderr)
         for p in problems:
