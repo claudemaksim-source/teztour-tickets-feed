@@ -5,8 +5,8 @@ on:
     - cron: "17 3 * * *"      # каждый день в 03:17 UTC
   workflow_dispatch:           # и по кнопке вручную
   push:
-    # только изменения кода. Файл цен сюда не включён намеренно:
-    # иначе коммит бота запускал бы сборку снова и снова
+    # только изменения кода. Файл цен и запас сюда не включены
+    # намеренно: иначе коммит бота запускал бы сборку без конца
     paths:
       - build-feed.py
       - .github/workflows/feed.yml
@@ -14,7 +14,7 @@ on:
 permissions:
   contents: write
 
-# два прогона разом полезли бы друг другу в push
+# два прогона разом полезли бы друг другу в push и в запас
 concurrency:
   group: feed
   cancel-in-progress: false
@@ -22,34 +22,25 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    # обычный прогон — около 20 минут (2480 запросов по 2 в секунду),
+    # но первый с пустым запасом идёт за всю сетку года — около 75 минут
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
 
       - name: Собрать фид
-        env:
-          FEED_WORKERS: "6"   # с чужого адреса шлюз лучше не частить
         run: python3 build-feed.py
 
       - name: Закоммитить, если цены изменились
+        if: always()          # запас пишется и при отказе публикации
         run: |
           git config user.name "feed-bot"
           git config user.email "feed-bot@users.noreply.github.com"
           # через индекс, а не git diff: неотслеживаемый файл diff не видит,
           # и самый первый запуск решил бы, что изменений нет
-          git add tickets-from.json
+          git add tickets-from.json prices-cache.json
           if git diff --cached --quiet; then
             echo "изменений нет"
-            exit 0
-          fi
-          # generated_at меняется каждый день, поэтому сверяем только данные
-          before=$(git show HEAD:tickets-from.json \
-                   | python3 -c "import json,sys; d=json.load(sys.stdin); d.pop('generated_at',None); print(json.dumps(d,sort_keys=True))" 2>/dev/null || echo "")
-          after=$(python3 -c "import json; d=json.load(open('tickets-from.json')); d.pop('generated_at',None); print(json.dumps(d,sort_keys=True))")
-          if [ "$before" = "$after" ]; then
-            echo "изменилась только дата сборки — не коммитим"
-            git reset -- tickets-from.json
-            git checkout -- tickets-from.json
             exit 0
           fi
           git commit -m "цены на $(date -u +%F)"
