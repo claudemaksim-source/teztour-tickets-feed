@@ -51,23 +51,6 @@
   "regions": "zalcburgas"
  },
  {
-  "slug": "turkija",
-  "name": "Turkija",
-  "price_one_way": 100,
-  "date_one_way": "2026-10-17",
-  "date_one_way_text": "17.10.2026",
-  "url_one_way": "https://www.teztour.lt/flightsearch/e49fef261ed8c37047639ca8596a55ce/from_date/17.10.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/23134/charter/1.lt.html",
-  "price_round_trip": 150,
-  "date_round_trip_out": "2026-10-17",
-  "date_round_trip_back": "2026-10-24",
-  "date_round_trip_text": "17.10.2026 – 24.10.2026",
-  "url_round_trip": "https://www.teztour.lt/flightsearch/cf687680c98f8bdb3fb1621b46ac5977/from_date/17.10.2026/to_date/24.10.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/23134/charter/1.lt.html",
-  "currency": "EUR",
-  "price_basis": "vienam asmeniui",
-  "regions_count": 2,
-  "regions": "antalija, bodrumas"
- },
- {
   "slug": "ispanija",
   "name": "Ispanija",
   "price_one_way": 109,
@@ -83,6 +66,23 @@
   "price_basis": "vienam asmeniui",
   "regions_count": 2,
   "regions": "malaga, tenerife"
+ },
+ {
+  "slug": "turkija",
+  "name": "Turkija",
+  "price_one_way": 110,
+  "date_one_way": "2026-10-20",
+  "date_one_way_text": "20.10.2026",
+  "url_one_way": "https://www.teztour.lt/flightsearch/8388206a6ac84d6f2caf70a194c0267a/from_date/20.10.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/23134/charter/1.lt.html",
+  "price_round_trip": 170,
+  "date_round_trip_out": "2026-10-20",
+  "date_round_trip_back": "2026-10-27",
+  "date_round_trip_text": "20.10.2026 – 27.10.2026",
+  "url_round_trip": "https://www.teztour.lt/flightsearch/ceac0c91289992fcb8bb83b499acb539/from_date/20.10.2026/to_date/27.10.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/23134/charter/1.lt.html",
+  "currency": "EUR",
+  "price_basis": "vienam asmeniui",
+  "regions_count": 2,
+  "regions": "antalija, bodrumas"
  },
  {
   "slug": "egiptas",
