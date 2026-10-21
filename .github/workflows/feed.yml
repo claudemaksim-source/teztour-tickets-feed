@@ -53,26 +53,36 @@ jobs:
           git commit -m "цены на $(date -u +%F)"
           git push
 
-      # Сверка идёт здесь, а не отдельным расписанием, именно потому,
-      # что так нет разрыва во времени: фид только что закоммичен,
-      # и не надо угадывать, успела ли сборка к назначенному часу.
+      # Было: при отсутствии секрета шаг молча выходил с нулём, и пропуск
+      # сверки выглядел точно как удачная сверка. Коллекция простояла пять
+      # дней с ценами на треть выше настоящих, и признака этого не было
+      # нигде. Теперь отсутствие секрета роняет шаг: цены к этому моменту
+      # уже закоммичены предыдущим шагом, то есть фид не страдает, а GitHub
+      # присылает письмо о падении.
       #
-      # Ключ — из секрета, а не в теле файла: хранилище публичное.
-      # Без секрета шаг пропускается с пометкой, а не валит сборку:
-      # цены важнее сверки, и фид должен обновляться даже без неё.
+      # Разбор ответа — только однострочным python. Многострочный внутри
+      # "run: |" пришлось бы писать без отступа, а строка без отступа
+      # обрывает блок YAML, и файл перестаёт разбираться целиком.
       - name: Сверить коллекцию tickets в Framer CMS
         env:
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
           if [ -z "$SUPABASE_ANON_KEY" ]; then
-            echo "секрет SUPABASE_ANON_KEY не задан — сверка пропущена"
-            exit 0
+            echo "::error::секрет SUPABASE_ANON_KEY не задан — коллекция в CMS не обновляется"
+            exit 1
           fi
           url="https://sjzrnrrndgxvdartjkgw.supabase.co/functions/v1/framer-tickets?mode=sync"
-          out=$(curl -sS -m 280 "$url" \
-                  -H "apikey: $SUPABASE_ANON_KEY" \
-                  -H "Authorization: Bearer $SUPABASE_ANON_KEY")
+          out=$(curl -sS -m 280 "$url" -H "apikey: $SUPABASE_ANON_KEY" -H "Authorization: Bearer $SUPABASE_ANON_KEY")
           echo "$out"
-          # ответ с ok:true считаем удачей, иначе роняем шаг, чтобы GitHub
-          # прислал письмо: молчаливая несверка хуже шумной
-          echo "$out" | python3 -c "import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get('ok') else 1)"
+          get() { echo "$out" | python3 -c "import json,sys;print(json.load(sys.stdin).get('$1'))"; }
+          ok=$(get ok)
+          day=$(get generated_at)
+          n=$(get written)
+          want=$(python3 -c "import json;print(json.load(open('tickets-from.json'))['generated_at'])")
+          # сверяем не только ok, но и дату: иначе удачным сочтётся прогон,
+          # записавший в CMS вчерашний фид
+          if [ "$ok" != "True" ] || [ "$day" != "$want" ] || [ "${n:-0}" -lt 1 ]; then
+            echo "::error::сверка не сошлась: ok=$ok дата=$day (ждали $want) записей=$n"
+            exit 1
+          fi
+          echo "в CMS записано $n за $day"
