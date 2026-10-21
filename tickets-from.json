@@ -1,7 +1,7 @@
 {
  "generated_at": "2026-10-21",
  "source": "https://xml.tezapi.eu/ticketsearch/search",
- "program_snapshot": "2026-10-19",
+ "program_snapshot": "2026-10-21",
  "currency": "EUR",
  "origin": "VNO",
  "origin_name": "Vilnius",
@@ -316,7 +316,7 @@
    "country": "Turkija",
    "country_slug": "turkija",
    "iata": "AYT",
-   "flights_count": 316,
+   "flights_count": 315,
    "season_first": "22.10.2026",
    "season_last": "18.10.2027",
    "one_way": {
