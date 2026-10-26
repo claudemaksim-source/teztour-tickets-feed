@@ -133,7 +133,7 @@
     "arr": "08:50",
     "dep": "05:20",
     "flight": "GW3525",
-    "price": 192.5
+    "price": 195.0
    }
   ],
   "AYT|02.08.2027": [
@@ -164,13 +164,6 @@
    }
   ],
   "AYT|02.11.2026": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "09:50",
-    "dep": "05:20",
-    "flight": "GW3525",
-    "price": 79.0
-   },
    {
     "airline": "GETJET AIRLINES",
     "arr": "19:35",
@@ -838,7 +831,7 @@
     "arr": "08:50",
     "dep": "05:20",
     "flight": "GW3525",
-    "price": 230.0
+    "price": 240.0
    }
   ],
   "AYT|10.07.2027": [
@@ -1673,6 +1666,22 @@
     "price": 215.0
    }
   ],
+  "AYT|19.10.2027": [
+   {
+    "airline": "GETJET AIRLINES",
+    "arr": "08:50",
+    "dep": "05:20",
+    "flight": "GW3525",
+    "price": 215.0
+   },
+   {
+    "airline": "GETJET AIRLINES",
+    "arr": "09:00",
+    "dep": "05:30",
+    "flight": "GW3723",
+    "price": 215.0
+   }
+  ],
   "AYT|20.04.2027": [
    {
     "airline": "GETJET AIRLINES",
@@ -2050,7 +2059,7 @@
     "arr": "08:50",
     "dep": "05:20",
     "flight": "GW3525",
-    "price": 215.0
+    "price": 217.5
    }
   ],
   "AYT|24.06.2027": [
@@ -2187,6 +2196,22 @@
     "price": 230.0
    }
   ],
+  "AYT|25.10.2027": [
+   {
+    "airline": "GETJET AIRLINES",
+    "arr": "08:50",
+    "dep": "05:20",
+    "flight": "GW3525",
+    "price": 217.5
+   },
+   {
+    "airline": "GETJET AIRLINES",
+    "arr": "18:20",
+    "dep": "14:50",
+    "flight": "GW3527",
+    "price": 217.5
+   }
+  ],
   "AYT|26.04.2027": [
    {
     "airline": "GETJET AIRLINES",
@@ -2253,15 +2278,6 @@
     "dep": "14:50",
     "flight": "GW3527",
     "price": 230.0
-   }
-  ],
-  "AYT|26.10.2026": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "19:35",
-    "dep": "15:05",
-    "flight": "GW3527",
-    "price": 79.0
    }
   ],
   "AYT|27.03.2027": [
@@ -3331,7 +3347,7 @@
     "arr": "18:20",
     "dep": "14:20",
     "flight": "GW3311",
-    "price": 390.0
+    "price": 299.0
    }
   ],
   "FNC|03.05.2027": [
@@ -3403,7 +3419,7 @@
     "arr": "18:20",
     "dep": "14:20",
     "flight": "GW3311",
-    "price": 330.0
+    "price": 99.0
    }
   ],
   "FNC|10.05.2027": [
@@ -3547,7 +3563,7 @@
     "arr": "18:15",
     "dep": "14:20",
     "flight": "GW3311",
-    "price": 360.0
+    "price": 370.0
    }
   ],
   "FNC|26.04.2027": [
@@ -3566,15 +3582,6 @@
     "dep": "14:20",
     "flight": "GW3311",
     "price": 375.0
-   }
-  ],
-  "FNC|26.10.2026": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "18:20",
-    "dep": "14:20",
-    "flight": "GW3311",
-    "price": 99.0
    }
   ],
   "FNC|27.09.2027": [
@@ -4591,7 +4598,7 @@
     "arr": "17:55",
     "dep": "14:35",
     "flight": "RE3327",
-    "price": 215.0
+    "price": 220.0
    }
   ],
   "HER|23.06.2027": [
@@ -4738,15 +4745,6 @@
     "price": 225.0
    }
   ],
-  "HER|26.10.2026": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "10:00",
-    "dep": "06:40",
-    "flight": "RE3327",
-    "price": 69.0
-   }
-  ],
   "HER|27.04.2027": [
    {
     "airline": "GETJET AIRLINES",
@@ -4852,7 +4850,7 @@
     "arr": "18:40",
     "dep": "15:20",
     "flight": "RE3327",
-    "price": 220.0
+    "price": 230.0
    }
   ],
   "HER|29.05.2027": [
@@ -4981,24 +4979,6 @@
     "price": 270.0
    }
   ],
-  "HRG|02.02.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "11:45",
-    "dep": "07:05",
-    "flight": "GW3605",
-    "price": 207.5
-   }
-  ],
-  "HRG|02.03.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "10:30",
-    "dep": "06:00",
-    "flight": "GW3605",
-    "price": 297.5
-   }
-  ],
   "HRG|03.04.2027": [
    {
     "airline": "GETJET AIRLINES",
@@ -5032,7 +5012,7 @@
     "arr": "10:30",
     "dep": "06:00",
     "flight": "GW3605",
-    "price": 237.5
+    "price": 250.0
    }
   ],
   "HRG|05.11.2026": [
@@ -5041,7 +5021,7 @@
     "arr": "19:00",
     "dep": "14:20",
     "flight": "GW3605",
-    "price": 247.5
+    "price": 242.5
    }
   ],
   "HRG|05.12.2026": [
@@ -5050,7 +5030,7 @@
     "arr": "12:30",
     "dep": "07:45",
     "flight": "GW3605",
-    "price": 242.5
+    "price": 237.5
    }
   ],
   "HRG|06.02.2027": [
@@ -5071,22 +5051,13 @@
     "price": 295.0
    }
   ],
-  "HRG|06.04.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "18:35",
-    "dep": "14:50",
-    "flight": "GW3605",
-    "price": 290.0
-   }
-  ],
   "HRG|07.11.2026": [
    {
     "airline": "GETJET AIRLINES",
     "arr": "22:30",
     "dep": "17:45",
     "flight": "GW3605",
-    "price": 245.0
+    "price": 237.5
    }
   ],
   "HRG|08.04.2027": [
@@ -5104,7 +5075,7 @@
     "arr": "12:45",
     "dep": "08:05",
     "flight": "GW3605",
-    "price": 237.5
+    "price": 230.0
    }
   ],
   "HRG|09.01.2027": [
@@ -5113,25 +5084,7 @@
     "arr": "19:00",
     "dep": "14:20",
     "flight": "GW3605",
-    "price": 245.0
-   }
-  ],
-  "HRG|09.02.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "11:45",
-    "dep": "07:05",
-    "flight": "GW3605",
-    "price": 267.5
-   }
-  ],
-  "HRG|09.03.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "10:30",
-    "dep": "06:00",
-    "flight": "GW3605",
-    "price": 285.0
+    "price": 230.0
    }
   ],
   "HRG|10.04.2027": [
@@ -5170,15 +5123,6 @@
     "price": 285.0
    }
   ],
-  "HRG|12.01.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "10:30",
-    "dep": "06:00",
-    "flight": "GW3605",
-    "price": 215.0
-   }
-  ],
   "HRG|12.11.2026": [
    {
     "airline": "GETJET AIRLINES",
@@ -5212,16 +5156,7 @@
     "arr": "11:30",
     "dep": "07:00",
     "flight": "GW3605",
-    "price": 282.5
-   }
-  ],
-  "HRG|13.04.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "18:35",
-    "dep": "14:50",
-    "flight": "GW3605",
-    "price": 295.0
+    "price": 285.0
    }
   ],
   "HRG|14.11.2026": [
@@ -5248,7 +5183,7 @@
     "arr": "12:45",
     "dep": "08:05",
     "flight": "GW3605",
-    "price": 227.5
+    "price": 220.0
    }
   ],
   "HRG|16.01.2027": [
@@ -5257,25 +5192,7 @@
     "arr": "19:00",
     "dep": "14:20",
     "flight": "GW3605",
-    "price": 227.5
-   }
-  ],
-  "HRG|16.02.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "11:45",
-    "dep": "07:05",
-    "flight": "GW3605",
-    "price": 295.0
-   }
-  ],
-  "HRG|16.03.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "10:30",
-    "dep": "06:00",
-    "flight": "GW3605",
-    "price": 282.5
+    "price": 220.0
    }
   ],
   "HRG|17.04.2027": [
@@ -5314,15 +5231,6 @@
     "price": 315.0
    }
   ],
-  "HRG|19.01.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "10:30",
-    "dep": "06:00",
-    "flight": "GW3605",
-    "price": 237.5
-   }
-  ],
   "HRG|19.11.2026": [
    {
     "airline": "GETJET AIRLINES",
@@ -5357,15 +5265,6 @@
     "dep": "07:00",
     "flight": "GW3605",
     "price": 332.5
-   }
-  ],
-  "HRG|20.04.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "18:35",
-    "dep": "14:50",
-    "flight": "GW3605",
-    "price": 295.0
    }
   ],
   "HRG|21.11.2026": [
@@ -5404,31 +5303,13 @@
     "price": 282.5
    }
   ],
-  "HRG|23.02.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "11:45",
-    "dep": "07:05",
-    "flight": "GW3605",
-    "price": 262.5
-   }
-  ],
-  "HRG|23.03.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "10:30",
-    "dep": "06:00",
-    "flight": "GW3605",
-    "price": 287.5
-   }
-  ],
   "HRG|24.11.2026": [
    {
     "airline": "GETJET AIRLINES",
     "arr": "11:15",
     "dep": "06:35",
     "flight": "GW3605",
-    "price": 275.0
+    "price": 260.0
    }
   ],
   "HRG|25.02.2027": [
@@ -5447,15 +5328,6 @@
     "dep": "07:00",
     "flight": "GW3605",
     "price": 285.0
-   }
-  ],
-  "HRG|26.01.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "10:30",
-    "dep": "06:00",
-    "flight": "GW3605",
-    "price": 225.0
    }
   ],
   "HRG|26.11.2026": [
@@ -5500,7 +5372,7 @@
     "arr": "11:30",
     "dep": "06:45",
     "flight": "GW3605",
-    "price": 280.0
+    "price": 272.5
    }
   ],
   "HRG|29.10.2026": [
@@ -5527,16 +5399,7 @@
     "arr": "19:00",
     "dep": "14:20",
     "flight": "GW3605",
-    "price": 220.0
-   }
-  ],
-  "HRG|30.03.2027": [
-   {
-    "airline": "GETJET AIRLINES",
-    "arr": "10:10",
-    "dep": "06:30",
-    "flight": "GW3605",
-    "price": 285.0
+    "price": 212.5
    }
   ],
   "HRG|31.10.2026": [
@@ -6004,7 +5867,7 @@
     "arr": "16:40",
     "dep": "15:10",
     "flight": "GW3755",
-    "price": 235.0
+    "price": 237.5
    }
   ],
   "SSH|01.11.2026": [
@@ -6049,7 +5912,7 @@
     "arr": "19:25",
     "dep": "14:45",
     "flight": "GW3607",
-    "price": 287.5
+    "price": 277.5
    }
   ],
   "SSH|06.12.2026": [
@@ -6058,7 +5921,7 @@
     "arr": "12:35",
     "dep": "07:55",
     "flight": "GW3607",
-    "price": 240.0
+    "price": 225.0
    }
   ],
   "SSH|07.02.2027": [
@@ -6094,7 +5957,7 @@
     "arr": "18:30",
     "dep": "13:50",
     "flight": "GW3607",
-    "price": 245.0
+    "price": 232.5
    }
   ],
   "SSH|10.01.2027": [
@@ -6283,7 +6146,7 @@
     "arr": "12:35",
     "dep": "07:55",
     "flight": "GW3607",
-    "price": 230.0
+    "price": 225.0
    }
   ],
   "SSH|24.02.2027": [
@@ -6292,7 +6155,7 @@
     "arr": "12:20",
     "dep": "07:40",
     "flight": "GW3607",
-    "price": 265.0
+    "price": 245.0
    }
   ],
   "SSH|24.03.2027": [
@@ -6355,7 +6218,7 @@
     "arr": "12:35",
     "dep": "07:55",
     "flight": "GW3607",
-    "price": 250.0
+    "price": 230.0
    }
   ],
   "SSH|31.03.2027": [
@@ -6463,7 +6326,7 @@
     "arr": "08:10",
     "dep": "06:10",
     "flight": "GW3771",
-    "price": 220.0
+    "price": 222.5
    }
   ],
   "SZG|06.02.2027": [
@@ -6553,7 +6416,7 @@
     "arr": "11:20",
     "dep": "07:00",
     "flight": "GW3301",
-    "price": 317.5
+    "price": 262.5
    }
   ],
   "TFS|05.02.2027": [
@@ -6742,7 +6605,7 @@
     "arr": "11:20",
     "dep": "07:00",
     "flight": "GW3301",
-    "price": 245.0
+    "price": 250.0
    }
   ],
   "TFS|29.01.2027": [
@@ -6942,12 +6805,12 @@
    {
     "flight_back": "GW3526",
     "flight_out": "GW3527",
-    "price": 265.0
+    "price": 195.0
    },
    {
     "flight_back": "GW3528",
     "flight_out": "GW3527",
-    "price": 265.0
+    "price": 195.0
    }
   ],
   "AYT|02.04.2027": [
@@ -7005,7 +6868,7 @@
    {
     "flight_back": "GW3526",
     "flight_out": "GW3525",
-    "price": 335.0
+    "price": 340.0
    }
   ],
   "AYT|02.08.2027": [
@@ -7032,23 +6895,13 @@
   "AYT|02.11.2026": [
    {
     "flight_back": "GW3526",
-    "flight_out": "GW3525",
-    "price": 300.0
-   },
-   {
-    "flight_back": "GW3528",
-    "flight_out": "GW3525",
-    "price": 300.0
-   },
-   {
-    "flight_back": "GW3526",
     "flight_out": "GW3527",
-    "price": 300.0
+    "price": 230.0
    },
    {
     "flight_back": "GW3528",
     "flight_out": "GW3527",
-    "price": 300.0
+    "price": 230.0
    }
   ],
   "AYT|03.04.2027": [
@@ -7662,7 +7515,7 @@
    {
     "flight_back": "GW3526",
     "flight_out": "GW3525",
-    "price": 410.0
+    "price": 430.0
    }
   ],
   "AYT|10.07.2027": [
@@ -8572,6 +8425,28 @@
     "price": 380.0
    }
   ],
+  "AYT|19.10.2027": [
+   {
+    "flight_back": "GW3526",
+    "flight_out": "GW3525",
+    "price": 380.0
+   },
+   {
+    "flight_back": "GW3724",
+    "flight_out": "GW3525",
+    "price": 380.0
+   },
+   {
+    "flight_back": "GW3526",
+    "flight_out": "GW3723",
+    "price": 380.0
+   },
+   {
+    "flight_back": "GW3724",
+    "flight_out": "GW3723",
+    "price": 380.0
+   }
+  ],
   "AYT|20.04.2027": [
    {
     "flight_back": "GW3526",
@@ -9017,7 +8892,7 @@
    {
     "flight_back": "GW3526",
     "flight_out": "GW3525",
-    "price": 380.0
+    "price": 385.0
    }
   ],
   "AYT|24.06.2027": [
@@ -9152,6 +9027,23 @@
     "price": 410.0
    }
   ],
+  "AYT|25.10.2027": [
+   {
+    "flight_back": "GW3526",
+    "flight_out": "GW3525",
+    "price": 385.0
+   },
+   {
+    "flight_back": "GW3526",
+    "flight_out": "GW3527",
+    "price": 385.0
+   },
+   {
+    "flight_back": "GW3528",
+    "flight_out": "GW3527",
+    "price": 385.0
+   }
+  ],
   "AYT|26.04.2027": [
    {
     "flight_back": "GW3526",
@@ -9217,18 +9109,6 @@
     "flight_back": "GW3528",
     "flight_out": "GW3527",
     "price": 410.0
-   }
-  ],
-  "AYT|26.10.2026": [
-   {
-    "flight_back": "GW3526",
-    "flight_out": "GW3527",
-    "price": 100.0
-   },
-   {
-    "flight_back": "GW3528",
-    "flight_out": "GW3527",
-    "price": 100.0
    }
   ],
   "AYT|27.03.2027": [
@@ -9544,22 +9424,22 @@
    {
     "flight_back": "GW3526",
     "flight_out": "GW3525",
-    "price": 240.0
+    "price": 150.0
    },
    {
     "flight_back": "GW3724",
     "flight_out": "GW3525",
-    "price": 240.0
+    "price": 150.0
    },
    {
     "flight_back": "GW3526",
     "flight_out": "GW3723",
-    "price": 240.0
+    "price": 150.0
    },
    {
     "flight_back": "GW3724",
     "flight_out": "GW3723",
-    "price": 240.0
+    "price": 150.0
    }
   ],
   "AYT|30.04.2027": [
@@ -9663,6 +9543,11 @@
   "AYT|31.10.2026": [
    {
     "flight_back": "GW3526",
+    "flight_out": "GW3527",
+    "price": 550.0
+   },
+   {
+    "flight_back": "GW3528",
     "flight_out": "GW3527",
     "price": 550.0
    }
@@ -10182,7 +10067,7 @@
    {
     "flight_back": "GW3312",
     "flight_out": "GW3311",
-    "price": 699.0
+    "price": 669.0
    }
   ],
   "FNC|03.05.2027": [
@@ -10343,7 +10228,7 @@
    {
     "flight_back": "GW3312",
     "flight_out": "GW3311",
-    "price": 670.0
+    "price": 690.0
    }
   ],
   "FNC|26.04.2027": [
@@ -10358,13 +10243,6 @@
     "flight_back": "GW3312",
     "flight_out": "GW3311",
     "price": 700.0
-   }
-  ],
-  "FNC|26.10.2026": [
-   {
-    "flight_back": "GW3312",
-    "flight_out": "GW3311",
-    "price": 159.0
    }
   ],
   "FNC|27.09.2027": [
@@ -11155,7 +11033,7 @@
    {
     "flight_back": "RE3328",
     "flight_out": "RE3327",
-    "price": 380.0
+    "price": 390.0
    }
   ],
   "HER|23.06.2027": [
@@ -11344,7 +11222,7 @@
    {
     "flight_back": "RE3328",
     "flight_out": "RE3327",
-    "price": 390.0
+    "price": 410.0
    }
   ],
   "HER|29.05.2027": [
@@ -11445,20 +11323,6 @@
     "price": 490.0
    }
   ],
-  "HRG|02.02.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 365.0
-   }
-  ],
-  "HRG|02.03.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 545.0
-   }
-  ],
   "HRG|03.04.2027": [
    {
     "flight_back": "GW3606",
@@ -11470,7 +11334,7 @@
    {
     "flight_back": "GW3606",
     "flight_out": "GW3605",
-    "price": 490.0
+    "price": 449.0
    }
   ],
   "HRG|04.03.2027": [
@@ -11480,25 +11344,18 @@
     "price": 540.0
    }
   ],
-  "HRG|05.01.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 425.0
-   }
-  ],
   "HRG|05.11.2026": [
    {
     "flight_back": "GW3606",
     "flight_out": "GW3605",
-    "price": 445.0
+    "price": 409.0
    }
   ],
   "HRG|05.12.2026": [
    {
     "flight_back": "GW3606",
     "flight_out": "GW3605",
-    "price": 435.0
+    "price": 425.0
    }
   ],
   "HRG|06.02.2027": [
@@ -11515,18 +11372,11 @@
     "price": 540.0
    }
   ],
-  "HRG|06.04.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 530.0
-   }
-  ],
   "HRG|07.11.2026": [
    {
     "flight_back": "GW3606",
     "flight_out": "GW3605",
-    "price": 440.0
+    "price": 425.0
    }
   ],
   "HRG|08.04.2027": [
@@ -11540,28 +11390,14 @@
    {
     "flight_back": "GW3606",
     "flight_out": "GW3605",
-    "price": 425.0
+    "price": 410.0
    }
   ],
   "HRG|09.01.2027": [
    {
     "flight_back": "GW3606",
     "flight_out": "GW3605",
-    "price": 440.0
-   }
-  ],
-  "HRG|09.02.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 485.0
-   }
-  ],
-  "HRG|09.03.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 520.0
+    "price": 410.0
    }
   ],
   "HRG|10.04.2027": [
@@ -11592,13 +11428,6 @@
     "price": 520.0
    }
   ],
-  "HRG|12.01.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 380.0
-   }
-  ],
   "HRG|12.11.2026": [
    {
     "flight_back": "GW3606",
@@ -11624,14 +11453,7 @@
    {
     "flight_back": "GW3606",
     "flight_out": "GW3605",
-    "price": 515.0
-   }
-  ],
-  "HRG|13.04.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 540.0
+    "price": 520.0
    }
   ],
   "HRG|14.11.2026": [
@@ -11652,28 +11474,14 @@
    {
     "flight_back": "GW3606",
     "flight_out": "GW3605",
-    "price": 405.0
+    "price": 390.0
    }
   ],
   "HRG|16.01.2027": [
    {
     "flight_back": "GW3606",
     "flight_out": "GW3605",
-    "price": 405.0
-   }
-  ],
-  "HRG|16.02.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 540.0
-   }
-  ],
-  "HRG|16.03.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 515.0
+    "price": 390.0
    }
   ],
   "HRG|17.04.2027": [
@@ -11704,13 +11512,6 @@
     "price": 580.0
    }
   ],
-  "HRG|19.01.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 425.0
-   }
-  ],
   "HRG|19.11.2026": [
    {
     "flight_back": "GW3606",
@@ -11737,13 +11538,6 @@
     "flight_back": "GW3606",
     "flight_out": "GW3605",
     "price": 615.0
-   }
-  ],
-  "HRG|20.04.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 540.0
    }
   ],
   "HRG|21.11.2026": [
@@ -11774,25 +11568,11 @@
     "price": 515.0
    }
   ],
-  "HRG|23.02.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 475.0
-   }
-  ],
-  "HRG|23.03.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 525.0
-   }
-  ],
   "HRG|24.11.2026": [
    {
     "flight_back": "GW3606",
     "flight_out": "GW3605",
-    "price": 500.0
+    "price": 470.0
    }
   ],
   "HRG|25.02.2027": [
@@ -11807,13 +11587,6 @@
     "flight_back": "GW3606",
     "flight_out": "GW3605",
     "price": 520.0
-   }
-  ],
-  "HRG|26.01.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 400.0
    }
   ],
   "HRG|26.12.2026": [
@@ -11841,7 +11614,7 @@
    {
     "flight_back": "GW3606",
     "flight_out": "GW3605",
-    "price": 510.0
+    "price": 495.0
    }
   ],
   "HRG|29.10.2026": [
@@ -11862,14 +11635,7 @@
    {
     "flight_back": "GW3606",
     "flight_out": "GW3605",
-    "price": 390.0
-   }
-  ],
-  "HRG|30.03.2027": [
-   {
-    "flight_back": "GW3606",
-    "flight_out": "GW3605",
-    "price": 520.0
+    "price": 375.0
    }
   ],
   "HRG|31.10.2026": [
@@ -12233,7 +11999,7 @@
    {
     "flight_back": "GW3756",
     "flight_out": "GW3755",
-    "price": 420.0
+    "price": 425.0
    }
   ],
   "SSH|01.11.2026": [
@@ -12268,14 +12034,14 @@
    {
     "flight_back": "GW3608",
     "flight_out": "GW3607",
-    "price": 525.0
+    "price": 459.0
    }
   ],
   "SSH|06.12.2026": [
    {
     "flight_back": "GW3608",
     "flight_out": "GW3607",
-    "price": 430.0
+    "price": 400.0
    }
   ],
   "SSH|07.02.2027": [
@@ -12303,7 +12069,7 @@
    {
     "flight_back": "GW3608",
     "flight_out": "GW3607",
-    "price": 440.0
+    "price": 415.0
    }
   ],
   "SSH|10.01.2027": [
@@ -12443,14 +12209,14 @@
    {
     "flight_back": "GW3608",
     "flight_out": "GW3607",
-    "price": 410.0
+    "price": 400.0
    }
   ],
   "SSH|24.02.2027": [
    {
     "flight_back": "GW3608",
     "flight_out": "GW3607",
-    "price": 480.0
+    "price": 440.0
    }
   ],
   "SSH|24.03.2027": [
@@ -12499,7 +12265,7 @@
    {
     "flight_back": "GW3608",
     "flight_out": "GW3607",
-    "price": 450.0
+    "price": 410.0
    }
   ],
   "SSH|31.03.2027": [
@@ -12583,7 +12349,7 @@
    {
     "flight_back": "GW3772",
     "flight_out": "GW3771",
-    "price": 390.0
+    "price": 395.0
    }
   ],
   "SZG|06.02.2027": [
@@ -12646,7 +12412,7 @@
    {
     "flight_back": "GW3302",
     "flight_out": "GW3301",
-    "price": 585.0
+    "price": 475.0
    }
   ],
   "TFS|05.02.2027": [
@@ -12793,7 +12559,7 @@
    {
     "flight_back": "GW3302",
     "flight_out": "GW3301",
-    "price": 440.0
+    "price": 450.0
    }
   ],
   "TFS|29.01.2027": [
