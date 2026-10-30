@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-29",
+ "generated_at": "2026-10-30",
  "source": "https://xml.tezapi.eu/ticketsearch/search",
  "program_snapshot": "2026-10-28",
  "currency": "EUR",
@@ -19,15 +19,15 @@
    "regions_count": 2,
    "one_way": {
     "price": 79,
-    "date": "31.10.2026",
+    "date": "02.11.2026",
     "flight": "GW3527",
-    "departs": "15:00",
-    "arrives": "19:30",
+    "departs": "15:10",
+    "arrives": "19:35",
     "airline": "GETJET AIRLINES",
-    "url": "https://www.teztour.lt/flightsearch/5c2095f640135947207d74590ed01075/from_date/31.10.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/23134/charter/1.lt.html"
+    "url": "https://www.teztour.lt/flightsearch/bb6b8dd27d9b6acd3297201956a6dc0f/from_date/02.11.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/23134/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 240,
+    "price": 255,
     "date_out": "02.11.2026",
     "date_back": "09.11.2026",
     "nights": 7,
@@ -63,6 +63,33 @@
    }
   },
   {
+   "slug": "egiptas",
+   "name": "Egiptas",
+   "regions": [
+    "hurgada",
+    "sarm-el-seichas"
+   ],
+   "regions_count": 2,
+   "one_way": {
+    "price": 99,
+    "date": "05.11.2026",
+    "flight": "GW3605",
+    "departs": "15:45",
+    "arrives": "20:30",
+    "airline": "GETJET AIRLINES",
+    "url": "https://www.teztour.lt/flightsearch/30037cdf4e6fed1e65ddca00eb942b02/from_date/05.11.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/29169/charter/1.lt.html"
+   },
+   "round_trip": {
+    "price": 239,
+    "date_out": "05.11.2026",
+    "date_back": "12.11.2026",
+    "nights": 7,
+    "flight_out": "GW3605",
+    "flight_back": "GW3606",
+    "url": "https://www.teztour.lt/flightsearch/1ddc45e2031b2a8767da25ba3b42a9f9/from_date/05.11.2026/to_date/12.11.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/29169/charter/1.lt.html"
+   }
+  },
+  {
    "slug": "graikija",
    "name": "Graikija",
    "regions": [
@@ -81,7 +108,7 @@
     "url": "https://www.teztour.lt/flightsearch/af03780e03116ffd5c1a7eb8b52a1a76/from_date/07.07.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/36369/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 300,
+    "price": 285,
     "date_out": "25.08.2027",
     "date_back": "01.09.2027",
     "nights": 7,
@@ -107,66 +134,13 @@
     "url": "https://www.teztour.lt/flightsearch/f9688ce7ba9b9e30ec4716446b87f814/from_date/09.11.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/26134/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 249,
-    "date_out": "02.11.2026",
-    "date_back": "09.11.2026",
+    "price": 625,
+    "date_out": "12.04.2027",
+    "date_back": "19.04.2027",
     "nights": 7,
     "flight_out": "GW3311",
     "flight_back": "GW3312",
-    "url": "https://www.teztour.lt/flightsearch/3107407e3d02d1ff9c357c6ce2b0bb59/from_date/02.11.2026/to_date/09.11.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/26134/charter/1.lt.html"
-   }
-  },
-  {
-   "slug": "ispanija",
-   "name": "Ispanija",
-   "regions": [
-    "tenerife"
-   ],
-   "regions_count": 1,
-   "one_way": {
-    "price": 149,
-    "date": "27.11.2026",
-    "flight": "GW3301",
-    "departs": "07:00",
-    "arrives": "11:20",
-    "airline": "GETJET AIRLINES",
-    "url": "https://www.teztour.lt/flightsearch/315a5ca1fa1ca78166f70852d4b667f3/from_date/27.11.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/38889/charter/1.lt.html"
-   },
-   "round_trip": {
-    "price": 399,
-    "date_out": "20.11.2026",
-    "date_back": "27.11.2026",
-    "nights": 7,
-    "flight_out": "GW3301",
-    "flight_back": "GW3302",
-    "url": "https://www.teztour.lt/flightsearch/9178ca485aeb2e1432c84f5f3a40245a/from_date/20.11.2026/to_date/27.11.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/38889/charter/1.lt.html"
-   }
-  },
-  {
-   "slug": "egiptas",
-   "name": "Egiptas",
-   "regions": [
-    "hurgada",
-    "sarm-el-seichas"
-   ],
-   "regions_count": 2,
-   "one_way": {
-    "price": 155,
-    "date": "05.11.2026",
-    "flight": "GW3605",
-    "departs": "15:45",
-    "arrives": "20:30",
-    "airline": "GETJET AIRLINES",
-    "url": "https://www.teztour.lt/flightsearch/30037cdf4e6fed1e65ddca00eb942b02/from_date/05.11.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/29169/charter/1.lt.html"
-   },
-   "round_trip": {
-    "price": 340,
-    "date_out": "07.11.2026",
-    "date_back": "14.11.2026",
-    "nights": 7,
-    "flight_out": "GW3605",
-    "flight_back": "GW3606",
-    "url": "https://www.teztour.lt/flightsearch/4c545bb3a13ce1142e753c2f19c51867/from_date/07.11.2026/to_date/14.11.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/29169/charter/1.lt.html"
+    "url": "https://www.teztour.lt/flightsearch/281705d40775adcfe514fb9ae50799d4/from_date/12.04.2027/to_date/19.04.2027/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/26134/charter/1.lt.html"
    }
   },
   {
@@ -178,7 +152,7 @@
    ],
    "regions_count": 2,
    "one_way": {
-    "price": 192.5,
+    "price": 185,
     "date": "15.08.2027",
     "flight": "GW3643",
     "departs": "15:05",
@@ -187,7 +161,7 @@
     "url": "https://www.teztour.lt/flightsearch/30aca8863befdb2a26670d03de487673/from_date/15.08.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/24729/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 335,
+    "price": 320,
     "date_out": "15.08.2027",
     "date_back": "22.08.2027",
     "nights": 7,
@@ -206,22 +180,48 @@
    ],
    "regions_count": 3,
    "one_way": {
-    "price": 210,
-    "date": "05.09.2027",
-    "flight": "GW3771",
-    "departs": "06:10",
-    "arrives": "08:10",
+    "price": 202.5,
+    "date": "02.06.2027",
+    "flight": "GW3755",
+    "departs": "15:10",
+    "arrives": "16:40",
     "airline": "GETJET AIRLINES",
-    "url": "https://www.teztour.lt/flightsearch/9f8e15e84f87f3ed0681219fc9f912ce/from_date/05.09.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/31469/charter/1.lt.html"
+    "url": "https://www.teztour.lt/flightsearch/261eb97c95c004f9c03347f2180cf028/from_date/02.06.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/27434/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 370,
-    "date_out": "05.09.2027",
-    "date_back": "12.09.2027",
+    "price": 355,
+    "date_out": "02.06.2027",
+    "date_back": "09.06.2027",
     "nights": 7,
-    "flight_out": "GW3771",
-    "flight_back": "GW3772",
-    "url": "https://www.teztour.lt/flightsearch/548722d086df6c20de8bcffe567bd26a/from_date/05.09.2027/to_date/12.09.2027/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/31469/charter/1.lt.html"
+    "flight_out": "GW3755",
+    "flight_back": "GW3756",
+    "url": "https://www.teztour.lt/flightsearch/16cf8b8f377ea14e020b50175a095855/from_date/02.06.2027/to_date/09.06.2027/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/27434/charter/1.lt.html"
+   }
+  },
+  {
+   "slug": "ispanija",
+   "name": "Ispanija",
+   "regions": [
+    "tenerife"
+   ],
+   "regions_count": 1,
+   "one_way": {
+    "price": 255,
+    "date": "04.12.2026",
+    "flight": "GW3301",
+    "departs": "07:00",
+    "arrives": "11:20",
+    "airline": "GETJET AIRLINES",
+    "url": "https://www.teztour.lt/flightsearch/c6ce9a67f5b8a1528fe8739cfacf860d/from_date/04.12.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/38889/charter/1.lt.html"
+   },
+   "round_trip": {
+    "price": 399,
+    "date_out": "20.11.2026",
+    "date_back": "27.11.2026",
+    "nights": 7,
+    "flight_out": "GW3301",
+    "flight_back": "GW3302",
+    "url": "https://www.teztour.lt/flightsearch/9178ca485aeb2e1432c84f5f3a40245a/from_date/20.11.2026/to_date/27.11.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/38889/charter/1.lt.html"
    }
   }
  ],
@@ -232,20 +232,20 @@
    "country": "Turkija",
    "country_slug": "turkija",
    "iata": "AYT",
-   "flights_count": 320,
-   "season_first": "31.10.2026",
+   "flights_count": 319,
+   "season_first": "02.11.2026",
    "season_last": "27.10.2027",
    "one_way": {
     "price": 79,
-    "date": "31.10.2026",
+    "date": "02.11.2026",
     "flight": "GW3527",
-    "departs": "15:00",
-    "arrives": "19:30",
+    "departs": "15:10",
+    "arrives": "19:35",
     "airline": "GETJET AIRLINES",
-    "url": "https://www.teztour.lt/flightsearch/5c2095f640135947207d74590ed01075/from_date/31.10.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/23134/charter/1.lt.html"
+    "url": "https://www.teztour.lt/flightsearch/bb6b8dd27d9b6acd3297201956a6dc0f/from_date/02.11.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/23134/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 240,
+    "price": 255,
     "date_out": "02.11.2026",
     "date_back": "09.11.2026",
     "nights": 7,
@@ -283,14 +283,42 @@
    }
   },
   {
+   "slug": "hurgada",
+   "name": "Hurgada",
+   "country": "Egiptas",
+   "country_slug": "egiptas",
+   "iata": "HRG",
+   "flights_count": 48,
+   "season_first": "05.11.2026",
+   "season_last": "22.04.2027",
+   "one_way": {
+    "price": 99,
+    "date": "05.11.2026",
+    "flight": "GW3605",
+    "departs": "15:45",
+    "arrives": "20:30",
+    "airline": "GETJET AIRLINES",
+    "url": "https://www.teztour.lt/flightsearch/30037cdf4e6fed1e65ddca00eb942b02/from_date/05.11.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/29169/charter/1.lt.html"
+   },
+   "round_trip": {
+    "price": 239,
+    "date_out": "05.11.2026",
+    "date_back": "12.11.2026",
+    "nights": 7,
+    "flight_out": "GW3605",
+    "flight_back": "GW3606",
+    "url": "https://www.teztour.lt/flightsearch/1ddc45e2031b2a8767da25ba3b42a9f9/from_date/05.11.2026/to_date/12.11.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/29169/charter/1.lt.html"
+   }
+  },
+  {
    "slug": "madeira",
    "name": "Madeira",
    "country": "Portugalija",
    "country_slug": "portugalija",
    "iata": "FNC",
-   "flights_count": 33,
+   "flights_count": 34,
    "season_first": "02.11.2026",
-   "season_last": "18.10.2027",
+   "season_last": "25.10.2027",
    "one_way": {
     "price": 99,
     "date": "09.11.2026",
@@ -301,13 +329,13 @@
     "url": "https://www.teztour.lt/flightsearch/f9688ce7ba9b9e30ec4716446b87f814/from_date/09.11.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/26134/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 249,
-    "date_out": "02.11.2026",
-    "date_back": "09.11.2026",
+    "price": 625,
+    "date_out": "12.04.2027",
+    "date_back": "19.04.2027",
     "nights": 7,
     "flight_out": "GW3311",
     "flight_back": "GW3312",
-    "url": "https://www.teztour.lt/flightsearch/3107407e3d02d1ff9c357c6ce2b0bb59/from_date/02.11.2026/to_date/09.11.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/26134/charter/1.lt.html"
+    "url": "https://www.teztour.lt/flightsearch/281705d40775adcfe514fb9ae50799d4/from_date/12.04.2027/to_date/19.04.2027/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/26134/charter/1.lt.html"
    }
   },
   {
@@ -329,7 +357,7 @@
     "url": "https://www.teztour.lt/flightsearch/af03780e03116ffd5c1a7eb8b52a1a76/from_date/07.07.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/36369/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 370,
+    "price": 350,
     "date_out": "28.08.2027",
     "date_back": "04.09.2027",
     "nights": 7,
@@ -339,59 +367,31 @@
    }
   },
   {
-   "slug": "tenerife",
-   "name": "Tenerifė",
-   "country": "Ispanija",
-   "country_slug": "ispanija",
-   "iata": "TFS",
-   "flights_count": 25,
-   "season_first": "06.11.2026",
-   "season_last": "23.04.2027",
-   "one_way": {
-    "price": 149,
-    "date": "27.11.2026",
-    "flight": "GW3301",
-    "departs": "07:00",
-    "arrives": "11:20",
-    "airline": "GETJET AIRLINES",
-    "url": "https://www.teztour.lt/flightsearch/315a5ca1fa1ca78166f70852d4b667f3/from_date/27.11.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/38889/charter/1.lt.html"
-   },
-   "round_trip": {
-    "price": 399,
-    "date_out": "20.11.2026",
-    "date_back": "27.11.2026",
-    "nights": 7,
-    "flight_out": "GW3301",
-    "flight_back": "GW3302",
-    "url": "https://www.teztour.lt/flightsearch/9178ca485aeb2e1432c84f5f3a40245a/from_date/20.11.2026/to_date/27.11.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/38889/charter/1.lt.html"
-   }
-  },
-  {
-   "slug": "hurgada",
-   "name": "Hurgada",
+   "slug": "sarm-el-seichas",
+   "name": "Šarm el Šeichas",
    "country": "Egiptas",
    "country_slug": "egiptas",
-   "iata": "HRG",
-   "flights_count": 48,
-   "season_first": "05.11.2026",
-   "season_last": "22.04.2027",
+   "iata": "SSH",
+   "flights_count": 39,
+   "season_first": "04.11.2026",
+   "season_last": "25.04.2027",
    "one_way": {
-    "price": 155,
-    "date": "05.11.2026",
-    "flight": "GW3605",
-    "departs": "15:45",
-    "arrives": "20:30",
+    "price": 99,
+    "date": "18.11.2026",
+    "flight": "GW3607",
+    "departs": "07:40",
+    "arrives": "12:20",
     "airline": "GETJET AIRLINES",
-    "url": "https://www.teztour.lt/flightsearch/30037cdf4e6fed1e65ddca00eb942b02/from_date/05.11.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/29169/charter/1.lt.html"
+    "url": "https://www.teztour.lt/flightsearch/a71e40f89da7c68fd67b74f5442e899e/from_date/18.11.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/37534/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 340,
-    "date_out": "07.11.2026",
-    "date_back": "14.11.2026",
+    "price": 350,
+    "date_out": "08.11.2026",
+    "date_back": "15.11.2026",
     "nights": 7,
-    "flight_out": "GW3605",
-    "flight_back": "GW3606",
-    "url": "https://www.teztour.lt/flightsearch/4c545bb3a13ce1142e753c2f19c51867/from_date/07.11.2026/to_date/14.11.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/29169/charter/1.lt.html"
+    "flight_out": "GW3607",
+    "flight_back": "GW3608",
+    "url": "https://www.teztour.lt/flightsearch/3f35ea6cceca14b36c7bc960e92033d2/from_date/08.11.2026/to_date/15.11.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/37534/charter/1.lt.html"
    }
   },
   {
@@ -404,7 +404,7 @@
    "season_first": "26.04.2027",
    "season_last": "22.10.2027",
    "one_way": {
-    "price": 175,
+    "price": 167.5,
     "date": "25.08.2027",
     "flight": "RE3327",
     "departs": "05:55",
@@ -413,7 +413,7 @@
     "url": "https://www.teztour.lt/flightsearch/db9b13cf1016c3210738c3150ae4f8ff/from_date/25.08.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/28889/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 300,
+    "price": 285,
     "date_out": "25.08.2027",
     "date_back": "01.09.2027",
     "nights": 7,
@@ -432,7 +432,7 @@
    "season_first": "03.06.2027",
    "season_last": "12.09.2027",
    "one_way": {
-    "price": 192.5,
+    "price": 185,
     "date": "15.08.2027",
     "flight": "GW3643",
     "departs": "15:05",
@@ -441,7 +441,7 @@
     "url": "https://www.teztour.lt/flightsearch/30aca8863befdb2a26670d03de487673/from_date/15.08.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/24729/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 335,
+    "price": 320,
     "date_out": "15.08.2027",
     "date_back": "22.08.2027",
     "nights": 7,
@@ -460,7 +460,7 @@
    "season_first": "18.06.2027",
    "season_last": "03.09.2027",
    "one_way": {
-    "price": 192.5,
+    "price": 185,
     "date": "30.07.2027",
     "flight": "GW3411",
     "departs": "06:30",
@@ -469,13 +469,41 @@
     "url": "https://www.teztour.lt/flightsearch/ce8c38c096d199f76d1232c1fdf4b369/from_date/30.07.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/39919/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 335,
+    "price": 320,
     "date_out": "30.07.2027",
     "date_back": "06.08.2027",
     "nights": 7,
     "flight_out": "GW3411",
     "flight_back": "GW3412",
     "url": "https://www.teztour.lt/flightsearch/727d8dd282a44acd2c48d8ef1cc0bc17/from_date/30.07.2027/to_date/06.08.2027/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/39919/charter/1.lt.html"
+   }
+  },
+  {
+   "slug": "bodrumas",
+   "name": "Bodrumas",
+   "country": "Turkija",
+   "country_slug": "turkija",
+   "iata": "BJV",
+   "flights_count": 21,
+   "season_first": "30.04.2027",
+   "season_last": "22.10.2027",
+   "one_way": {
+    "price": 200,
+    "date": "30.04.2027",
+    "flight": "GW3509",
+    "departs": "14:50",
+    "arrives": "18:10",
+    "airline": "GETJET AIRLINES",
+    "url": "https://www.teztour.lt/flightsearch/6af6c2897b29c4fd5dd429ee9781b29c/from_date/30.04.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/33119/charter/1.lt.html"
+   },
+   "round_trip": {
+    "price": 350,
+    "date_out": "30.04.2027",
+    "date_back": "07.05.2027",
+    "nights": 7,
+    "flight_out": "GW3509",
+    "flight_back": "GW3510",
+    "url": "https://www.teztour.lt/flightsearch/fa492a1b1d8b293018ef4e05a465461e/from_date/30.04.2027/to_date/07.05.2027/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/33119/charter/1.lt.html"
    }
   },
   {
@@ -488,7 +516,7 @@
    "season_first": "10.05.2027",
    "season_last": "04.10.2027",
    "one_way": {
-    "price": 210,
+    "price": 200,
     "date": "30.08.2027",
     "flight": "GW3371",
     "departs": "15:10",
@@ -497,13 +525,41 @@
     "url": "https://www.teztour.lt/flightsearch/49783e9f5b77380849db5ff3fec18040/from_date/30.08.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/26019/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 370,
+    "price": 350,
     "date_out": "30.08.2027",
     "date_back": "06.09.2027",
     "nights": 7,
     "flight_out": "GW3371",
     "flight_back": "GW3372",
     "url": "https://www.teztour.lt/flightsearch/aab4ce1f4bef59e31f21ccb7f863a46f/from_date/30.08.2027/to_date/06.09.2027/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/26019/charter/1.lt.html"
+   }
+  },
+  {
+   "slug": "riminis",
+   "name": "Riminis",
+   "country": "Italija",
+   "country_slug": "italija",
+   "iata": "RMI",
+   "flights_count": 5,
+   "season_first": "02.06.2027",
+   "season_last": "30.06.2027",
+   "one_way": {
+    "price": 202.5,
+    "date": "02.06.2027",
+    "flight": "GW3755",
+    "departs": "15:10",
+    "arrives": "16:40",
+    "airline": "GETJET AIRLINES",
+    "url": "https://www.teztour.lt/flightsearch/261eb97c95c004f9c03347f2180cf028/from_date/02.06.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/27434/charter/1.lt.html"
+   },
+   "round_trip": {
+    "price": 355,
+    "date_out": "02.06.2027",
+    "date_back": "09.06.2027",
+    "nights": 7,
+    "flight_out": "GW3755",
+    "flight_back": "GW3756",
+    "url": "https://www.teztour.lt/flightsearch/16cf8b8f377ea14e020b50175a095855/from_date/02.06.2027/to_date/09.06.2027/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/27434/charter/1.lt.html"
    }
   },
   {
@@ -535,87 +591,31 @@
    }
   },
   {
-   "slug": "riminis",
-   "name": "Riminis",
-   "country": "Italija",
-   "country_slug": "italija",
-   "iata": "RMI",
-   "flights_count": 5,
-   "season_first": "02.06.2027",
-   "season_last": "30.06.2027",
+   "slug": "tenerife",
+   "name": "Tenerifė",
+   "country": "Ispanija",
+   "country_slug": "ispanija",
+   "iata": "TFS",
+   "flights_count": 24,
+   "season_first": "13.11.2026",
+   "season_last": "23.04.2027",
    "one_way": {
-    "price": 215,
-    "date": "02.06.2027",
-    "flight": "GW3755",
-    "departs": "15:10",
-    "arrives": "16:40",
+    "price": 255,
+    "date": "04.12.2026",
+    "flight": "GW3301",
+    "departs": "07:00",
+    "arrives": "11:20",
     "airline": "GETJET AIRLINES",
-    "url": "https://www.teztour.lt/flightsearch/261eb97c95c004f9c03347f2180cf028/from_date/02.06.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/27434/charter/1.lt.html"
+    "url": "https://www.teztour.lt/flightsearch/c6ce9a67f5b8a1528fe8739cfacf860d/from_date/04.12.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/38889/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 380,
-    "date_out": "02.06.2027",
-    "date_back": "09.06.2027",
+    "price": 399,
+    "date_out": "20.11.2026",
+    "date_back": "27.11.2026",
     "nights": 7,
-    "flight_out": "GW3755",
-    "flight_back": "GW3756",
-    "url": "https://www.teztour.lt/flightsearch/16cf8b8f377ea14e020b50175a095855/from_date/02.06.2027/to_date/09.06.2027/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/27434/charter/1.lt.html"
-   }
-  },
-  {
-   "slug": "sarm-el-seichas",
-   "name": "Šarm el Šeichas",
-   "country": "Egiptas",
-   "country_slug": "egiptas",
-   "iata": "SSH",
-   "flights_count": 40,
-   "season_first": "01.11.2026",
-   "season_last": "25.04.2027",
-   "one_way": {
-    "price": 217.5,
-    "date": "11.11.2026",
-    "flight": "GW3607",
-    "departs": "07:40",
-    "arrives": "12:20",
-    "airline": "GETJET AIRLINES",
-    "url": "https://www.teztour.lt/flightsearch/da8ee55dedbfe09258ae19c26facb210/from_date/11.11.2026/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/37534/charter/1.lt.html"
-   },
-   "round_trip": {
-    "price": 385,
-    "date_out": "11.11.2026",
-    "date_back": "18.11.2026",
-    "nights": 7,
-    "flight_out": "GW3607",
-    "flight_back": "GW3608",
-    "url": "https://www.teztour.lt/flightsearch/2e861b77c8066d44d681341d8e360fe5/from_date/11.11.2026/to_date/18.11.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/37534/charter/1.lt.html"
-   }
-  },
-  {
-   "slug": "bodrumas",
-   "name": "Bodrumas",
-   "country": "Turkija",
-   "country_slug": "turkija",
-   "iata": "BJV",
-   "flights_count": 21,
-   "season_first": "30.04.2027",
-   "season_last": "22.10.2027",
-   "one_way": {
-    "price": 225,
-    "date": "30.04.2027",
-    "flight": "GW3509",
-    "departs": "14:50",
-    "arrives": "18:10",
-    "airline": "GETJET AIRLINES",
-    "url": "https://www.teztour.lt/flightsearch/6af6c2897b29c4fd5dd429ee9781b29c/from_date/30.04.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/33119/charter/1.lt.html"
-   },
-   "round_trip": {
-    "price": 400,
-    "date_out": "30.04.2027",
-    "date_back": "07.05.2027",
-    "nights": 7,
-    "flight_out": "GW3509",
-    "flight_back": "GW3510",
-    "url": "https://www.teztour.lt/flightsearch/fa492a1b1d8b293018ef4e05a465461e/from_date/30.04.2027/to_date/07.05.2027/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/33119/charter/1.lt.html"
+    "flight_out": "GW3301",
+    "flight_back": "GW3302",
+    "url": "https://www.teztour.lt/flightsearch/9178ca485aeb2e1432c84f5f3a40245a/from_date/20.11.2026/to_date/27.11.2026/adults/1/route_type/RT/v/2/iataFrom/21129/iataTo/38889/charter/1.lt.html"
    }
   },
   {
@@ -628,7 +628,7 @@
    "season_first": "27.05.2027",
    "season_last": "08.10.2027",
    "one_way": {
-    "price": 275,
+    "price": 265,
     "date": "27.05.2027",
     "flight": "GW3797",
     "departs": "06:45",
@@ -637,7 +637,7 @@
     "url": "https://www.teztour.lt/flightsearch/4f229db4868f15b671e16f15506bb3d9/from_date/27.05.2027/adults/1/route_type/OW/v/2/iataFrom/21129/iataTo/34609/charter/1.lt.html"
    },
    "round_trip": {
-    "price": 450,
+    "price": 430,
     "date_out": "27.05.2027",
     "date_back": "03.06.2027",
     "nights": 7,
